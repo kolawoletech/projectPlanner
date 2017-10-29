@@ -42,6 +42,7 @@ exports.createTeamMember = functions.database
                   .database()
                   .ref(`/userProfile/${memberId}`)
                   .set({
+                    id: memberId,
                     fullName: fullName,
                     email: email,
                     teamAdmin: false,
