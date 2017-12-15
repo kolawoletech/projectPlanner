@@ -9,11 +9,11 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list *ngIf="isAdmin">
     <h3> Hey {{ (userProfile | async )?.fullName }}, </h3>
     <p> These are your team's tasks. </p>
+
     <ion-item *ngFor="let task of adminTaskList | async" (click)="completeTask(task.id)"
       [class.incomplete]="!task.completed" [class.completed]="task.completed">
       <h2>{{ task.taskName }}</h2>
@@ -25,6 +25,7 @@
   <ion-list *ngIf="!isAdmin">
     <h3> Hey {{ (userProfile | async )?.fullName }}, </h3>
     <p> These are your assigned tasks. </p>
+
     <ion-item *ngFor="let task of memberTaskList | async" (click)="completeTask(task.id)"
       [class.incomplete]="!task.completed" [class.completed]="task.completed">
       <h2>{{ task.taskName }}</h2>

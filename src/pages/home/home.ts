@@ -25,7 +25,9 @@ export class HomePage {
     this.teamProvider.getAdminStatus().then(adminStatus => {
       this.isAdmin = adminStatus;
     });
+
     this.userProfile = this.teamProvider.getUserProfile().valueChanges();
+
     this.userProfile.subscribe(profileSnapshot => {
       this.teamId = profileSnapshot.teamId;
       if (this.isAdmin) {

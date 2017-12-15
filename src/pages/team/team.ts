@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
   templateUrl: 'team.html'
 })
 export class TeamPage {
-  teamProfile: Observable<any>;
-  teamMemberList: Observable<any>;
-  userProfile: Observable<any>;
-  teamId: string;
+  public teamProfile: Observable<any>;
+  public teamMemberList: Observable<any>;
+  public userProfile: Observable<any>;
+  public teamId: string;
 
   constructor(
     public navCtrl: NavController,
@@ -24,7 +24,6 @@ export class TeamPage {
 
   ionViewDidLoad() {
     this.userProfile = this.teamProvider.getUserProfile().valueChanges();
-
     this.userProfile.subscribe(userProfile => {
       this.teamId = userProfile.teamId;
 

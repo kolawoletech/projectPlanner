@@ -11,6 +11,7 @@ import { EmailValidator } from '../../validators/email';
 })
 export class LoginPage {
   public loginForm: FormGroup;
+
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -27,6 +28,14 @@ export class LoginPage {
         Validators.compose([Validators.minLength(6), Validators.required])
       ]
     });
+  }
+
+  goToResetPassword(): void {
+    this.navCtrl.push('ResetPasswordPage');
+  }
+
+  goToSignup(): void {
+    this.navCtrl.push('SignupPage');
   }
 
   loginUser(): void {
@@ -50,12 +59,5 @@ export class LoginPage {
         );
     }
     loading.present();
-  }
-
-  goToResetPassword(): void {
-    this.navCtrl.push('ResetPasswordPage');
-  }
-  goToSignup(): void {
-    this.navCtrl.push('SignupPage');
   }
 }

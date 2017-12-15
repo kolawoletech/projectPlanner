@@ -20,6 +20,9 @@ exports.createTeamMember = functions.database
         return event.data.adminRef.set(null);
       })
       .catch(error => {
+        console.log(
+          "There's no user with those credentials, creating a new user."
+        );
         // Access the parent node to get the Team's name.
         return event.data.adminRef.parent.parent
           .child('teamName')
@@ -29,6 +32,7 @@ exports.createTeamMember = functions.database
             const email = event.data.val().email;
             const fullName = event.data.val().fullName;
             const teamName = snapshot.val();
+
             return admin
               .auth()
               .createUser({
@@ -50,9 +54,9 @@ exports.createTeamMember = functions.database
                     teamName: teamName
                   });
               });
-          })
-          .catch(error => {
-            console.error('Error creating new user:', error);
           });
+      })
+      .catch(error => {
+        console.error('Error:', error);
       });
   });

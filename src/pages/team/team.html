@@ -8,8 +8,8 @@
   <h4>Hey {{ (userProfile | async )?.fullName }},</h4>
   <p>
     You're the admin of
-    <strong>{{ (teamProfile | async )?.teamName }}</strong> and below you can see your team
-    members or add new members.
+    <strong>{{ (teamProfile | async )?.teamName }}</strong> and below you can see your
+    team members or add new members.
   </p>
   <button ion-button block color="primary-dark" (click)="inviteTeamMember()">
     Invite a new member
@@ -23,5 +23,4 @@
       {{ member.fullName }}
     </ion-item>
   </ion-list>
-
 </ion-content>

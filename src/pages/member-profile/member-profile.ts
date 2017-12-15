@@ -8,6 +8,7 @@ import {
 import { TeamProvider } from '../../providers/team/team';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
+
 @IonicPage()
 @Component({
   selector: 'page-member-profile',
@@ -34,11 +35,13 @@ export class MemberProfilePage {
     this.memberProfile = this.teamProvider
       .getMemberProfile(memberId)
       .valueChanges();
+
     this.memberProfile.subscribe(profile => {
       this.teamId = profile.teamId;
       const taskList: Observable<any> = this.teamProvider
         .getMemberTaskList(profile.teamId, memberId)
         .valueChanges();
+
       taskList.subscribe(tasks => {
         this.pendingTaskList = tasks.filter(task => task.completed === false);
         this.completedTaskList = tasks.filter(task => task.completed === true);

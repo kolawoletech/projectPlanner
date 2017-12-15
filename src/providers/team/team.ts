@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import {
   AngularFireDatabase,
@@ -6,6 +7,7 @@ import {
   AngularFireObject
 } from 'angularfire2/database';
 import firebase from 'firebase/app';
+
 @Injectable()
 export class TeamProvider {
   public userId: string;
@@ -15,7 +17,7 @@ export class TeamProvider {
     });
   }
 
-  getAdminStatus(): Promise<boolean> {
+  getAdminStatus(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.afDb
         .object(`/userProfile/${this.userId}/teamAdmin`)
@@ -33,7 +35,6 @@ export class TeamProvider {
   getMemberProfile(memberId: string): AngularFireObject<any> {
     return this.afDb.object(`/userProfile/${memberId}/`);
   }
-
   getTeamMemberList(teamId: string): AngularFireList<any> {
     return this.afDb.list(`/teamProfile/${teamId}/teamMembers`);
   }
@@ -51,6 +52,7 @@ export class TeamProvider {
     const taskRef: firebase.database.ThenableReference = this.afDb
       .list(`/taskListByTeam/${this.userId}/`)
       .push({});
+
     return taskRef.set({
       taskName,
       memberId,

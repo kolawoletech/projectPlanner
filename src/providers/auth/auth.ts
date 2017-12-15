@@ -14,7 +14,7 @@ export class AuthProvider {
     password: string,
     fullName: string,
     teamName: string
-  ): Promise<any> {
+  ): Promise<void> {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(
@@ -44,6 +44,7 @@ export class AuthProvider {
     const newMemberRef = this.afDb
       .list(`teamProfile/${teamId}/teamMembers/`)
       .push({});
+
     return newMemberRef.set({
       fullName,
       email,
@@ -54,9 +55,11 @@ export class AuthProvider {
   loginUser(email: string, password: string): Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
+
   logoutUser(): Promise<void> {
     return this.afAuth.auth.signOut();
   }
+
   resetPassword(email: string): Promise<void> {
     return this.afAuth.auth.sendPasswordResetEmail(email);
   }

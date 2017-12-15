@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class TaskCreatePage {
   public memberList: Observable<any>;
   public createTaskForm: FormGroup;
+
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,

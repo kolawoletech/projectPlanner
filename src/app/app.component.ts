@@ -9,6 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MyApp {
   rootPage: string;
+
   constructor(
     platform: Platform,
     statusBar: StatusBar,
