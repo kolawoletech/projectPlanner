@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HomePage {
   isAdmin: boolean = false;
+  isClient: boolean = false;
   adminTaskList: Observable<any>;
   memberTaskList: Observable<any>;
   userProfile: Observable<any>;
@@ -22,15 +23,24 @@ export class HomePage {
   ) {}
 
   ionViewDidLoad() {
+    this.teamProvider.getClientStatus().then(clientStatus => {
+      this.isClient = clientStatus;
+    });
+
     this.teamProvider.getAdminStatus().then(adminStatus => {
       this.isAdmin = adminStatus;
     });
 
     this.userProfile = this.teamProvider.getUserProfile().valueChanges();
-
+    // This Page determine content of home page tab
+    //I change to client viewing all tabs
+    /*
+      TODO: To create Admin's View, To Assign Tasks, But Also Clients Allow Them to Add Notes To 
+      Tasks But Can't Edit.
+    */
     this.userProfile.subscribe(profileSnapshot => {
       this.teamId = profileSnapshot.teamId;
-      if (this.isAdmin) {
+      if (this.isClient) {
         this.adminTaskList = this.teamProvider
           .getTaskList(profileSnapshot.teamId)
           .valueChanges();

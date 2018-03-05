@@ -16,6 +16,18 @@ export class TeamProvider {
       this.userId = user.uid;
     });
   }
+// Give Client Only Client status, never ability to add a client, can post note
+// Admin Will add and Assign Tasks
+  getClientStatus(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.afDb
+        .object(`/userProfile/${this.userId}/teamClient`)
+        .snapshotChanges()
+        .subscribe(action => {
+          resolve(action.payload.val());
+        });
+    });
+  }
 
   getAdminStatus(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -27,7 +39,6 @@ export class TeamProvider {
         });
     });
   }
-
   getUserProfile(): AngularFireObject<any> {
     return this.afDb.object(`/userProfile/${this.userId}/`);
   }

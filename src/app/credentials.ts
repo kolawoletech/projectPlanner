@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBVXxy_CqyllPB8DoGN_h9se-TocSepwI0',
-  authDomain: 'task-manager-tutorial.firebaseapp.com',
-  databaseURL: 'https://task-manager-tutorial.firebaseio.com',
-  projectId: 'task-manager-tutorial',
-  storageBucket: 'task-manager-tutorial.appspot.com',
-  messagingSenderId: '593853471870'
+    apiKey: "AIzaSyAKgwMNzJIvYeNJEy99g9sbKint6DyCv_s",
+    authDomain: "accounting-hub.firebaseapp.com",
+    databaseURL: "https://accounting-hub.firebaseio.com",
+    projectId: "accounting-hub",
+    storageBucket: "accounting-hub.appspot.com",
+    messagingSenderId: "981147796796"
 };
